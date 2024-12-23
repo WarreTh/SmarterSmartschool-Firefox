@@ -310,6 +310,7 @@ function onLoad() {
   height: 85%;
   width: 60%;
   border: 1px solid black;
+  color: black; /* Ensures text color is black */
 }
 
 #result-table th {
@@ -324,6 +325,10 @@ function onLoad() {
     border: 1.5px solid grey !important;
     padding: 1rem;
     min-width: 5.5rem;
+}
+
+#result-table td {
+    color: black !important; /* Ensures the text is black */
 }
  
 #modal-background {
@@ -395,6 +400,7 @@ function onLoad() {
     $("#modal-content, #modal-background").toggleClass("active");
   });
 }
+
 
 function openGrid() {
   $("#modal-content, #modal-background").toggleClass("active");

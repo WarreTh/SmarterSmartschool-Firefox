@@ -6,7 +6,8 @@
 - Fix colors not restoring
 - Use local storage instead of sync
 - Remove fixes for smartschool++ because it doesnt exist for firefox
-
+- Change dark mode so it still shows the table
+- Fix the results table not showing up
 
 5.8
 - Add compatibility with Smartschool++ (https://chromewebstore.google.com/detail/smartschool++/bdhficnphioomdjhdfbhdepjgggekodf)
