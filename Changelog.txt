@@ -2,6 +2,7 @@
 - Ported over to firefox:
     - Custom themes
     - storage
+    - Points tabel
 - Add reminder to refresh the page
 - Fix colors not restoring
 - Use local storage instead of sync
