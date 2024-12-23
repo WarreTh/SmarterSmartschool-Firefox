@@ -43,8 +43,8 @@ function addButton() {
 }
 
 function makeGrid() {
-  let loading = $("<h3>Loading!</h3>");
-  fetch('/results/api/v1/evaluations?itemsOnPage=500').then(r => r.json()).then(results => {
+  let loading = $("<h3>Aan het laden!</h3>");
+  fetch(window.location.origin + '/results/api/v1/evaluations?itemsOnPage=500').then(r => r.json()).then(results => {
     let data = {};
     let course_to_graphic = {};
     let latest_period = null;
@@ -74,7 +74,7 @@ function makeGrid() {
     for (let period_name of Object.keys(data)) {
       let period = data[period_name];
 
-      let grid = $("<div/>").attr("id", "period").append($("<h2/>").text(period_name + ":"));
+      let grid = $("<div/>").attr("id", "period").addClass("textvanperiod").append($("<h2/>").text(period_name + ":"));
       let table = $("<table/>").attr("id", "result-table");
 
       let longest = 0;
@@ -114,13 +114,14 @@ function makeGrid() {
           const desc = result["graphic"]["description"];
           const color = result["graphic"]["color"];
           const name = result["name"];
+    
 
-          row.append($("<td/>").addClass("c-" + color + "-combo--100").attr({ id: "details", content: name }).text(desc));
+          row.append($("<td/>").addClass("c-" + color + "-combo--100 details-cell").attr({ content: "Onderwerp: " + name }).text(desc));
 
-          let match = desc.match(/^([\d\,\.]+)\/([\d\,\.]+)$/);
-          if (match) {
-            total_numerator += parseFloat(match[1].replace(',', '.'));
-            total_denominator += parseFloat(match[2].replace(',', '.'));
+        let match = desc.match(/^([\d\,\.]+)\/([\d\,\.]+)$/);
+        if (match) {
+          total_numerator += parseFloat(match[1].replace(',', '.'));
+          total_denominator += parseFloat(match[2].replace(',', '.'));
           }
         }
 
@@ -144,7 +145,7 @@ function makeGrid() {
       }
 
       let overallTotalRow = $("<tr/>");
-      overallTotalRow.append($("<th/>").text("Total"));
+      overallTotalRow.append($("<th/>").text("Totaal"));
       for (let i = 0; i < longest; i++) {
         overallTotalRow.append($("<td/>"));
       }
@@ -175,7 +176,7 @@ function makeGrid() {
       })(grid)));
     }
     if (period_buttons.children().length > 1) {
-      period_buttons.prepend($("<span/>").text("Select period: "));
+      period_buttons.prepend($("<span/>").addClass("period_texttag").text("Selecteer een periode: "));
       modal.append(period_buttons);
     }
 
@@ -218,17 +219,13 @@ function onLoad() {
     opacity: 0;
     transition: visibility 0s, opacity 0.5s linear;
 }
-    
-#details {
-  position: relative;
-}
 
-#details:hover::before {
+.details-cell:hover::before {
   visibility: visible;
   opacity: 0.9;
 }
 
-#details::before {
+.details-cell::before {
   z-index: 2;
   content: attr(content);
   color: white;
@@ -236,18 +233,27 @@ function onLoad() {
   visibility: hidden;
   position: absolute;
   text-align: center;
-  padding: 0.313rem 0;
+  font-size: 150%;
+  padding: 0.1% 0.6%;
   border-radius: 0.375rem;
   opacity: 0;
   transition: opacity .6s;
-  width: 15rem;
+  width: auto;
   top: 100%;
-  left: 50%;
-  margin-left: -7.5rem;
+  left: 0%;
 }
 
 #result-table .hidden-cell {
   border: none !important;
+}
+
+.textvanperiod {
+  margin-top: 1%;
+}
+
+.period_texttag {
+  font-weight: bold;
+  margin-right: 0.5%; 
 }
 
 .period_button {
@@ -266,7 +272,7 @@ function onLoad() {
 }
 
 .period_button:active {
-  background-color: #ff6210;
+  background-color: black;
 }
 
 .total {
@@ -301,8 +307,9 @@ function onLoad() {
 }
 
 #result-table {
-    margin-top: 1rem;
-    border: 0px;
+  height: 85%;
+  width: 60%;
+  border: 1px solid black;
 }
 
 #result-table th {
@@ -314,8 +321,8 @@ function onLoad() {
 }
 
 #result-table th, #result-table td {
-    border: 1px solid gray !important;
-    padding: 0.5rem;
+    border: 1.5px solid grey !important;
+    padding: 1rem;
     min-width: 5.5rem;
 }
  
@@ -331,7 +338,7 @@ function onLoad() {
     -webkit-opacity: .5;
     -moz-opacity: .5;
     filter: alpha(opacity=50);
-    z-index: 1000;
+    z-index: 1;
 }
 
 #modal-content {
@@ -368,7 +375,7 @@ function onLoad() {
   right: 0.5rem;
 }
 #modal-close:hover {
-  background-color: #dd0000;
+  background-color: #7d1f1f;
 }
 #modal-close:active {
   background-color: #ff0000;
@@ -380,7 +387,7 @@ function onLoad() {
     $("<div/>").attr("id", "modal-background")
   ).append(
     $("<div/>").attr("id", "modal-content").append(
-      $("<button/>").attr("id", "modal-close").text("Close")
+      $("<button/>").attr("id", "modal-close").text("Venster Sluiten")
     ).append(makeGrid())
   );
 

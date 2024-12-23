@@ -1,27 +1,33 @@
 {
-  "name": "Smarter Smartschool",
-  "short_name": "SmarterSS",
-  "version": "5.8",
-  "description": "Makes Smartschool smarter.",
+  "manifest_version": 2,
+  "name": "Smarter Smartschool - Firefox",
+  "short_name": "SSS",
+  "version": "5.8-Firefox",
+  "description": "Makes smartschool smart.",
   "permissions": [
-    "activeTab",
     "storage",
-    "declarativeContent"
+    "tabs"
   ],
+  "content_security_policy": "script-src 'self'; object-src 'self'",
   "background": {
-    "service_worker": "background.js"
+    "scripts": ["background.js"]
   },
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true
   },
-  "action": {
+  "browser_action": {
     "default_popup": "options.html"
   },
   "icons": {
     "16": "static/img/icon_16.png",
     "48": "static/img/icon_48.png",
     "128": "static/img/icon_128.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "sss@WaTh.dev"
+    }
   },
   "content_scripts": [
     {
@@ -52,17 +58,18 @@
         "BetterStyle.js"
       ],
       "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://*.smartschool.be/"
+      ],
+      "js": [
+        "BeterAnime.js"
+      ],
+      "run_at": "document_end"
     }
   ],
   "web_accessible_resources": [
-    {
-      "resources": [
-        "static/img/icon_128.png"
-      ],
-      "matches": [
-        "https://*.smartschool.be/*"
-      ]
-    }
-  ],
-  "manifest_version": 3
+    "static/img/icon_128.png"
+  ]
 }

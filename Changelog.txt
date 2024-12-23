@@ -1,3 +1,13 @@
+5.8 - Firefox
+- Ported over to firefox:
+    - Custom themes
+    - storage
+- Add reminder to refresh the page
+- Fix colors not restoring
+- Use local storage instead of sync
+- Remove fixes for smartschool++ because it doesnt exist for firefox
+
+
 5.8
 - Add compatibility with Smartschool++ (https://chromewebstore.google.com/detail/smartschool++/bdhficnphioomdjhdfbhdepjgggekodf)
 

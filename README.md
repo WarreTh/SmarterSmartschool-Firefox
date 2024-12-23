@@ -1,5 +1,12 @@
 # ![Logo](static/img/icon_48.png) Smarter Smartschool 
 
-Adds a point total to Smartschool.
+## Features:
+- Adds a point total to Smartschool.
+- Adds custom theming to Smartschool.
 
-### [Download for Chrome here](https://chrome.google.com/webstore/detail/smarter-smartschool/lbpdknjafmmnemenflppkofaakldbfom)
+### [Download for Firefox Here]()
+
+
+## Todo
+- Fix Images
+- Fix the point total
