@@ -26,8 +26,7 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "sss@WaTh.dev"
-    }
+      "id": "{0d29743f-7717-45b3-918a-83ed3b5c4372}"  // Updated to match the AMO ID    }
   },
   "content_scripts": [
     {
